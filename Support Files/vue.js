@@ -17,6 +17,7 @@
   // These helpers produce better VM code in JS engines due to their explicitness and function inlining.
   function isUndef (v) {
     return v === undefined || v === null
+    
   }
 
   function isDef (v) {
@@ -42,20 +43,21 @@
     )
   }
 
-  // Quick object check - this is primarily used to tell Objects from primitive values when we know the value is a JSON-compliant type.
+  // Quick object check used to tell Objects from primitive values when known the value is a JSON-compliant type
   function isObject (obj) {
     return obj !== null && typeof obj === 'object'
   }
 
-  // Get the raw type string of a value, e.g., [object Object].
+  // Obtains raw type string of a value, e.g., [object Object].
   var _toString = Object.prototype.toString;
   function toRawType (value) {
     return _toString.call(value).slice(8, -1)
   }
 
-  // Strict object type check. Only returns true for plain JavaScript objects.
+  // Strict object type check, will only return true for plain JavaScript objects.
   function isPlainObject (obj) {
     return _toString.call(obj) === '[object Object]'
+    
   }
   function isRegExp (v) {
     return _toString.call(v) === '[object RegExp]'
@@ -65,6 +67,7 @@
   function isValidArrayIndex (val) {
     var n = parseFloat(String(val));
     return n >= 0 && Math.floor(n) === n && isFinite(val)
+    
   }
   function isPromise (val) {
     return (
@@ -74,7 +77,7 @@
     )
   }
 
-  // Convert a value to a string that is actually rendered.
+  // Converts a value to a rendered string
   function toString (val) {
     return val == null
       ? ''
@@ -83,16 +86,14 @@
         : String(val)
   }
 
-  // Convert an input value to a number for persistence. If the conversion fails, return original string.
+  // Converts an input value to a number for persistence. If conversion fails the original string is returned.
   function toNumber (val) {
     var n = parseFloat(val);
     return isNaN(n) ? val : n
   }
 
-  /**
-   * Make a map and return a function for checking if a key
-   * is in that map.
-   */
+  // Maps and returns a function for checking if a key is in that map.
+                     
   function makeMap (
     str,
     expectsLowerCase
