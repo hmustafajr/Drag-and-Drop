@@ -3,6 +3,7 @@
  * (c) 2014-2019 Evan You
  * Released under the MIT License.
  */
+
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
@@ -13,8 +14,7 @@
 
   var emptyObject = Object.freeze({});
 
-  // These helpers produce better VM code in JS engines due to their
-  // explicitness and function inlining.
+  // These helpers produce better VM code in JS engines due to their explicitness and function inlining.
   function isUndef (v) {
     return v === undefined || v === null
   }
@@ -31,9 +31,7 @@
     return v === false
   }
 
-  /**
-   * Check if value is primitive.
-   */
+  // Check if value is primitive.
   function isPrimitive (value) {
     return (
       typeof value === 'string' ||
@@ -44,44 +42,30 @@
     )
   }
 
-  /**
-   * Quick object check - this is primarily used to tell
-   * Objects from primitive values when we know the value
-   * is a JSON-compliant type.
-   */
+  // Quick object check - this is primarily used to tell Objects from primitive values when we know the value is a JSON-compliant type.
   function isObject (obj) {
     return obj !== null && typeof obj === 'object'
   }
 
-  /**
-   * Get the raw type string of a value, e.g., [object Object].
-   */
+  // Get the raw type string of a value, e.g., [object Object].
   var _toString = Object.prototype.toString;
-
   function toRawType (value) {
     return _toString.call(value).slice(8, -1)
   }
 
-  /**
-   * Strict object type check. Only returns true
-   * for plain JavaScript objects.
-   */
+  // Strict object type check. Only returns true for plain JavaScript objects.
   function isPlainObject (obj) {
     return _toString.call(obj) === '[object Object]'
   }
-
   function isRegExp (v) {
     return _toString.call(v) === '[object RegExp]'
   }
 
-  /**
-   * Check if val is a valid array index.
-   */
+  // Check if val is a valid array index.
   function isValidArrayIndex (val) {
     var n = parseFloat(String(val));
     return n >= 0 && Math.floor(n) === n && isFinite(val)
   }
-
   function isPromise (val) {
     return (
       isDef(val) &&
@@ -90,9 +74,7 @@
     )
   }
 
-  /**
-   * Convert a value to a string that is actually rendered.
-   */
+  // Convert a value to a string that is actually rendered.
   function toString (val) {
     return val == null
       ? ''
@@ -101,10 +83,7 @@
         : String(val)
   }
 
-  /**
-   * Convert an input value to a number for persistence.
-   * If the conversion fails, return original string.
-   */
+  // Convert an input value to a number for persistence. If the conversion fails, return original string.
   function toNumber (val) {
     var n = parseFloat(val);
     return isNaN(n) ? val : n
